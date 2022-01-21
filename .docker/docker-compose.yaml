@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+
+  ve-app:
+    build:
+      context: ..
+      dockerfile: ".docker/Dockerfile"
+      args:
+        db_service_host: '${MYSQL_HOST}'
+        db_service_port: '${MYSQL_PORT}'
+    restart: "always"
+    ports:
+      - 3000:3000
+    networks:
+      - ve-app-nw
+
+  mysql_server_service:
+    container_name: ve_app_mysql_server
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: ve-app-db
+      MYSQL_ROOT_PASSWORD: ve-app-pass
+    networks:
+      - ve-app-nw
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+    networks:
+      - ve-app-nw
+    depends_on:
+      - mysql_server_service
+
+
+networks:
+  ve-app-nw:
+    driver: bridge
+    name: 've-app-nw'
