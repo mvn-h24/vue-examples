@@ -22,4 +22,7 @@ export default {
     baseURL: '/',
   },
   build: {},
+  server: {
+    port: 3000,
+  },
 }
