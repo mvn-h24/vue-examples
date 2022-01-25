@@ -15,9 +15,15 @@ export default {
   },
   css: [],
   plugins: [],
-  components: true,
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/tailwindcss'],
-  modules: ['@nuxtjs/axios'],
+  components: {
+    dirs: ['~/components/expand-cards', '~/components/ui-lib'],
+  },
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxt/image',
+    '@nuxt/typescript-build',
+    '@nuxtjs/tailwindcss',
+  ],
   axios: {
     baseURL: '/',
   },
