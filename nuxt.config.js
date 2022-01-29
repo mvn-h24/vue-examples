@@ -16,7 +16,7 @@ export default {
   css: [],
   plugins: [],
   components: {
-    dirs: ['~/components/expand-cards', '~/components/ui-lib'],
+    dirs: ['~/components/expand-cards', '~/components', '~/components/ui-lib'],
   },
   modules: [
     '@nuxtjs/axios',

@@ -1,24 +1,23 @@
 <template lang="html">
-  <nav class="w-full">
-    <ul >
-      <li v-for="(link, index) in linksList" :key="index"><ProjectLink :project-url="link.url">{{link.title}}</ProjectLink></li>
-    </ul>
-  </nav>
+  <list-composition class="w-full h-full" :links-list="linksList"/>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import ProjectLink from "~/components/ui-lib/ProjectLink.vue";
+import ListComposition from "~/components/ui-lib/Project/ListComposition.vue";
 
 const Projects = [
   {
     url:'/expanding-cards',
     title:'Expanding cards'
-  }
+  },{
+    url:'/cinema-cc',
+    title:'Cinema CC'
+  },
 ]
 export default Vue.extend({
   name: 'IndexPage',
-  components: {ProjectLink},
+  components: {ListComposition},
   layout: 'FullscreenLayout',
   data() {
     return {

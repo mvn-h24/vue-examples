@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "ProjectLink",
+  name: "LinkComponent",
   props:{
     projectUrl:{
       type: String,
