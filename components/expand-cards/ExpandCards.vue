@@ -30,7 +30,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      activeCard: undefined,
+      activeCard: this.cards.findIndex((card) => card.active),
     }
   },
   methods: {
