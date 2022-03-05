@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "snovakovic.vtpw",
+    "octref.vetur",
+    "esbenp.prettier-vscode",
+    "csstools.postcss",
+    "eg2.vscode-npm-script",
+    "ms-vscode.vscode-typescript-next",
+    "tedisagolli.hex-to-tailwind",
+    "heybourn.headwind",
+    "dbaeumer.vscode-eslint",
+    "mikestead.dotenv"
+  ]
+}
