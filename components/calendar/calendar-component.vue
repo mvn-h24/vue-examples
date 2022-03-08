@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue'
+import Vue, {PropType} from 'vue'
 import CalendarControls from './calendar-controls.vue'
 import CalendarDay from './calendar-day.vue'
 import CalendarHead from './calendar-head.vue'
@@ -48,33 +48,33 @@ export default Vue.extend({
   },
   data() {
     return {
-      curDate: { src: this.$props.currentDate },
+      cDateState: { src: this.$props.currentDate },
     }
   },
   computed: {
     monthStart(): Date {
-      return this.startOfMonth(this.currdate)
+      return this.startOfMonth(this.cDate)
     },
     monthEnd(): Date {
-      return this.endOfMonth(this.currdate)
+      return this.endOfMonth(this.cDate)
     },
     formattedDate: {
       get(): String {
-        return `${this.currdate.getMonth() + 1}-${this.currdate.getFullYear()}`
+        return `${this.cDate.getMonth() + 1}-${this.cDate.getFullYear()}`
       },
     },
-    currdate: {
+    cDate: {
       set(d: Date) {
-        this.curDate = { src: d }
+        this.cDateState = { src: d }
       },
       get(): Date {
-        return this.curDate.src
+        return this.cDateState.src
       },
     },
     weeksList(): Array<Array<Date>> {
-      const date = this.currdate
-      const monthStart = this.startOfMonth(date)
-      const monthEnd = this.endOfMonth(date)
+      const date = this.cDate
+      const monthStart = this.monthStart
+      const monthEnd = this.monthEnd
       let weeksBetweenMonths = 0
       let weeksFirstDay = monthStart
       let FirstWeek, LastWeek
@@ -98,10 +98,10 @@ export default Vue.extend({
   },
   methods: {
     setNextMonth() {
-      this.currdate = this.addMonths(this.currdate, 1)
+      this.cDate = this.addMonths(this.cDate, 1)
     },
     setPrevMonth() {
-      this.currdate = this.subMonths(this.currdate, 1)
+      this.cDate = this.subMonths(this.cDate, 1)
     },
     isSameMonth(dLeft: Date, dRight: Date): boolean {
       return (
@@ -243,5 +243,3 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style></style>
