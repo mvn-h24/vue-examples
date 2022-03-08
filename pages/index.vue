@@ -10,7 +10,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ProjectLink from '~/components/ui-lib/ProjectLink.vue'
 
 const Projects = [
   {
@@ -24,7 +23,6 @@ const Projects = [
 ]
 export default Vue.extend({
   name: 'IndexPage',
-  components: { ProjectLink },
   layout: 'FullscreenLayout',
   data() {
     return {
