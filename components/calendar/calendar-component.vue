@@ -19,7 +19,9 @@
             class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition ease"
             :class="isSameMonth(monthStart, day) ? '' : ' bg-gray-100'"
           >
-            <CalendarDay :date="day" />
+            <CalendarDay :date="day" >
+              <slot name="calendarDayContent" :calendarDate="day"></slot>
+            </CalendarDay>
           </td>
         </tr>
       </tbody>
