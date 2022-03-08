@@ -1,31 +1,29 @@
 <template>
-  <div className="container mx-auto mt-10">
-    <div className="wrapper bg-white rounded shadow w-full ">
-      <calendar-controls
-        :cur-date="curDate"
-        @prev-month-call="setPrevMonth"
-        @next-month-call="setNextMonth"
-      />
-      <table className="w-full">
-        <CalendarHead />
-        <tbody>
-          <tr
-            v-for="(week, index) in weeksList()"
-            :key="index"
-            className="text-center h-20"
+  <div class="wrapper bg-white rounded shadow w-full">
+    <calendar-controls
+      :selected-date="formattedDate"
+      @prev-month-call="setPrevMonth"
+      @next-month-call="setNextMonth"
+    />
+    <table class="w-full">
+      <CalendarHead />
+      <tbody>
+        <tr
+          v-for="(week, index) in weeksList"
+          :key="index"
+          class="text-center h-20"
+        >
+          <td
+            v-for="(day, i) in week"
+            :key="i"
+            class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition ease"
+            :class="isSameMonth(monthStart, day) ? '' : ' bg-gray-100'"
           >
-            <td
-              v-for="(day, i) in week"
-              :key="i"
-              class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition ease"
-              :class="isSameMonth(monthStart, day) ? '' : ' bg-gray-100'"
-            >
-              <CalendarDay :date="day" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            <CalendarDay :date="day" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -50,26 +48,33 @@ export default Vue.extend({
   },
   data() {
     return {
-      curDate: this.$props.currentDate,
+      curDate: { src: this.$props.currentDate },
     }
-  },
-  watch: {
-    curDate(pev, next) {
-      console.log(pev, next)
-    },
   },
   computed: {
     monthStart(): Date {
-      return this.startOfMonth(this.curDate)
+      return this.startOfMonth(this.currdate)
     },
     monthEnd(): Date {
-      return this.endOfMonth(this.curDate)
+      return this.endOfMonth(this.currdate)
     },
-  },
-  methods: {
+    formattedDate: {
+      get(): String {
+        return `${this.currdate.getMonth() + 1}-${this.currdate.getFullYear()}`
+      },
+    },
+    currdate: {
+      set(d: Date) {
+        this.curDate = { src: d }
+      },
+      get(): Date {
+        return this.curDate.src
+      },
+    },
     weeksList(): Array<Array<Date>> {
-      const monthStart = this.startOfMonth(this.curDate)
-      const monthEnd = this.endOfMonth(this.curDate)
+      const date = this.currdate
+      const monthStart = this.startOfMonth(date)
+      const monthEnd = this.endOfMonth(date)
       let weeksBetweenMonths = 0
       let weeksFirstDay = monthStart
       let FirstWeek, LastWeek
@@ -84,17 +89,19 @@ export default Vue.extend({
       }
       const weeks = this.getWeeksCount(
         weeksFirstDay,
-        this.getWeeksInMonth(this.curDate) - weeksBetweenMonths
+        this.getWeeksInMonth(date) - weeksBetweenMonths
       )
       if (FirstWeek) weeks.unshift(FirstWeek)
       if (LastWeek) weeks.push(LastWeek)
       return weeks
     },
+  },
+  methods: {
     setNextMonth() {
-      this.curDate = this.addMonths(this.curDate, 1)
+      this.currdate = this.addMonths(this.currdate, 1)
     },
     setPrevMonth() {
-      this.curDate = this.subMonths(this.curDate, 1)
+      this.currdate = this.subMonths(this.currdate, 1)
     },
     isSameMonth(dLeft: Date, dRight: Date): boolean {
       return (

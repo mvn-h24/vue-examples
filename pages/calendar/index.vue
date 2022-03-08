@@ -1,5 +1,7 @@
 <template>
-  <calendar-component />
+  <div class="container mx-auto my-10">
+    <calendar-component />
+  </div>
 </template>
 
 <script lang="ts">
