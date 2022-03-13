@@ -1,16 +1,9 @@
-import { CombinedVueInstance } from 'vue/types/vue'
 import Vue, { PropType } from 'vue'
 
 export interface CalendarProps {
   currentDate: Date
 }
-export const calendarProps = {
-  currentDate: {
-    type: Date as PropType<Date>,
-    default: () => new Date(),
-  },
-}
-export interface CalendarState {
+export interface ICalendarModel {
   year: number
   month: number
   date: number
@@ -19,14 +12,24 @@ export interface CalendarState {
   seconds: number
   ms: number
 }
-export const initialState = (
-  vm: CombinedVueInstance<Vue, CalendarState, unknown, unknown, CalendarProps>
-): CalendarState => ({
-  year: vm.currentDate.getFullYear(),
-  month: vm.currentDate.getMonth(),
-  date: vm.currentDate.getDate(),
-  hours: vm.currentDate.getHours(),
-  minutes: vm.currentDate.getMinutes(),
-  seconds: vm.currentDate.getSeconds(),
-  ms: vm.currentDate.getMilliseconds(),
+
+export const CalendarModel = Vue.mixin({
+  props: {
+    currentDate: {
+      type: Date as PropType<Date>,
+      default: () => new Date(),
+    },
+  },
+  data() {
+    return {
+      year: this.currentDate.getFullYear(),
+      month: this.currentDate.getMonth(),
+      date: this.currentDate.getDate(),
+      hours: this.currentDate.getHours(),
+      minutes: this.currentDate.getMinutes(),
+      seconds: this.currentDate.getSeconds(),
+      ms: this.currentDate.getMilliseconds(),
+    }
+  },
 })
+export default CalendarModel
