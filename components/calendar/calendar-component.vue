@@ -19,9 +19,9 @@
             class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition ease"
             :class="isSameMonth(monthFirstDate, day) ? '' : ' bg-gray-100'"
           >
-            <date-container :date="day">
-              <slot name="calendarDayContent" :calendarDate="day"></slot>
-            </CalendarDay>
+            <date-container :date="day.toDateString()">
+              <slot name="calendarDayContent" :calendarDate="day"/>
+            </date-container>
           </td>
         </tr>
       </tbody>
@@ -33,7 +33,7 @@
 import MonthScroll from './month-scroll.vue'
 import DateContainer from './date-container.vue'
 import WeeksList from './weeks-list.vue'
-import CalendarVm from './calendar.vm.ts'
+import CalendarVm from './calendar.vm'
 
 export default CalendarVm.extend({
   name: 'CalendarComponent',

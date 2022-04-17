@@ -18,13 +18,16 @@ export default Vue.extend({
   name: 'CalendarDay',
   props: {
     date: {
-      type: Date as PropType<Date>,
+      type: String as PropType<string>,
       required: true,
     },
   },
   computed: {
+    cDate(): Date{
+      return new Date(this.date);
+    },
     calendarDay(): number {
-      return this.date.getDate()
+      return this.cDate.getDate()
     },
   },
 })

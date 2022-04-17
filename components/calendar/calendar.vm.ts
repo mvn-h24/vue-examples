@@ -4,12 +4,21 @@ import {
   CalendarProps,
   ICalendarModel,
 } from '~/components/calendar/calendar.model'
-import { CalendarService } from '~/components/calendar/calendar.service'
+import CalendarService, {
+  CalendarMethods,
+} from '~/components/calendar/calendar.service'
 
+interface CalendarVmComputed {
+  cDate: Date
+  monthFirstDate: Date
+  monthLastDay: Date
+  formattedDate: String
+  weeksList: Array<Array<Date>>
+}
 export default Vue.extend<
   ICalendarModel,
-  typeof CalendarService,
-  typeof CalendarService,
+  CalendarMethods & any,
+  CalendarVmComputed,
   CalendarProps
 >({
   mixins: [CalendarService, CalendarModel],
@@ -42,7 +51,7 @@ export default Vue.extend<
     },
     monthLastDay(): Date {
       return this.endOfMonth(this.cDate)
-      return new Date()
+      // return new Date()
     },
     formattedDate: {
       get(): String {

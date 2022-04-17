@@ -1,6 +1,22 @@
 import Vue from 'vue'
 
-export const CalendarService = Vue.extend({
+export interface CalendarMethods {
+  isSameMonth(dLeft: Date, dRight: Date): boolean
+  endOfMonth(d: Date): Date
+  startOfMonth(d: Date): Date
+  lastDayOfMonth(d: Date): Date
+  differenceInCalendarWeeks(dLeft: Date, dRight: Date): any
+  addMonths(d: Date, amount: number): Date
+  subMonths(d: Date, amount: number): Date
+  startOfWeek(d: Date): Date
+  addDays(d: Date, amount: number): any
+  subDays(d: Date, amount: number): any
+  getTimezoneOffsetInMilliseconds(date: Date): number
+  getWeeksInMonth(d: Date): any
+  weekBetweenMonth(date: Date): any
+  getWeeksCount(startFrom: Date, count: number): any
+}
+export default Vue.extend<unknown, CalendarMethods, unknown, unknown>({
   methods: {
     isSameMonth(dLeft: Date, dRight: Date): boolean {
       return (

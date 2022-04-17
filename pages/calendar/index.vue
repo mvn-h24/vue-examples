@@ -1,10 +1,6 @@
 <template>
   <div class="container mx-auto my-10">
-    <calendar-component>
-      <template #calendarDayContent="state">
-        <date-badge v-if="isSameDay(state.calendarDate, birthDay)" :$date="state.calendarDate"/>
-      </template>
-    </calendar-component>
+    <calendar-component/>
   </div>
 </template>
 

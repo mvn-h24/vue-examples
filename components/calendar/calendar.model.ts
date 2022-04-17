@@ -13,7 +13,7 @@ export interface ICalendarModel {
   ms: number
 }
 
-export const CalendarModel = Vue.mixin({
+export const CalendarModel = Vue.extend({
   props: {
     currentDate: {
       type: Date as PropType<Date>,
