@@ -9,7 +9,7 @@ import CalendarService, {
 } from '~/components/calendar/calendar.service'
 
 interface CalendarVmComputed {
-  cDate: Date
+  navDate: Date
   monthFirstDate: Date
   monthLastDay: Date
   formattedDate: String
@@ -23,15 +23,15 @@ export default Vue.extend<
 >({
   mixins: [CalendarService, CalendarModel],
   computed: {
-    cDate: {
+    navDate: {
       set(d: Date) {
         this.year = d.getFullYear()
         this.month = d.getMonth()
-        this.date = d.getDate()
-        this.hours = d.getHours()
-        this.minutes = d.getMinutes()
-        this.seconds = d.getSeconds()
-        this.ms = d.getMilliseconds()
+        this.date = 1
+        this.hours = 0
+        this.minutes = 0
+        this.seconds = 1
+        this.ms = 1
       },
       get(): Date {
         return new Date(
@@ -46,32 +46,28 @@ export default Vue.extend<
       },
     },
     monthFirstDate(): Date {
-      // return this.startOfMonth(this.cDate)
-      return this.startOfMonth(this.cDate)
+      return this.startOfMonth(this.navDate)
     },
     monthLastDay(): Date {
-      return this.endOfMonth(this.cDate)
-      // return new Date()
+      return this.endOfMonth(this.navDate)
     },
     formattedDate: {
       get(): String {
-        return `${this.cDate.getMonth() + 1}-${this.cDate.getFullYear()}`
+        return `${this.navDate.getMonth() + 1}-${this.navDate.getFullYear()}`
       },
     },
 
     weeksList(): Array<Array<Date>> {
       const monthStart = this.monthFirstDate
       const monthEnd = this.monthLastDay
-      const daysCount = monthEnd.getDate()
       const weeks: Array<Array<Date>> = [[]]
       const getFirstDay = () => weeks[0][0]
       const getLastWeek = () => weeks[weeks.length - 1]
       const getLastDay = () =>
         weeks[weeks.length - 1][weeks[weeks.length - 1].length - 1]
-
-      for (let i = 0; i < daysCount; i++) {
+      for (let i = 0; i < monthEnd.getDate(); i++) {
         const weekDate = this.addDays(monthStart, i)
-        if (weekDate.getDay() === 1 && weeks[0].length > 1) {
+        if (weekDate.getDay() === 1 && weeks[0].length >= 1) {
           weeks.push([weekDate])
         } else {
           weeks[weeks.length - 1].push(weekDate)
@@ -79,7 +75,7 @@ export default Vue.extend<
       }
       const firstDay = getFirstDay().getDay()
       if (firstDay !== 1) {
-        for (let i = firstDay; i > 1; i--) {
+        for (let i = firstDay === 0 ? 7 : firstDay; i > 1; i--) {
           weeks[0].unshift(this.subDays(weeks[0][0], 1))
         }
       }
@@ -94,10 +90,10 @@ export default Vue.extend<
   },
   methods: {
     setNextMonth() {
-      this.cDate = this.addMonths(this.cDate, 1)
+      this.navDate = this.addMonths(this.navDate, 1)
     },
     setPrevMonth() {
-      this.cDate = this.subMonths(this.cDate, 1)
+      this.navDate = this.subMonths(this.navDate, 1)
     },
   },
 })

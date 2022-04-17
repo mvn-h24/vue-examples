@@ -28,7 +28,7 @@ export default Vue.extend<unknown, CalendarMethods, unknown, unknown>({
       const date = new Date(
         d.getFullYear(),
         d.getMonth(),
-        d.getDay(),
+        d.getDate(),
         d.getHours(),
         d.getMinutes(),
         d.getSeconds(),
@@ -42,7 +42,7 @@ export default Vue.extend<unknown, CalendarMethods, unknown, unknown>({
       const date = new Date(
         d.getFullYear(),
         d.getMonth(),
-        d.getDay(),
+        d.getDate(),
         d.getHours(),
         d.getMinutes(),
         d.getSeconds(),

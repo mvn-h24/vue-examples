@@ -24,11 +24,11 @@ export const CalendarModel = Vue.extend({
     return {
       year: this.currentDate.getFullYear(),
       month: this.currentDate.getMonth(),
-      date: this.currentDate.getDate(),
-      hours: this.currentDate.getHours(),
-      minutes: this.currentDate.getMinutes(),
-      seconds: this.currentDate.getSeconds(),
-      ms: this.currentDate.getMilliseconds(),
+      date: 1,
+      hours: 0,
+      minutes: 0,
+      seconds: 1,
+      ms: 1,
     }
   },
 })
