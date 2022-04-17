@@ -1,10 +1,10 @@
 <template>
-  <ExpandCards :cards="CardsList" />
+  <expand-cards :cards="CardsList" class="min-h-screen" />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { IExpandCard } from '~/components/expand-cards/ExpandCards.vue'
+import {IExpandCard} from '~/components/expand-cards/ExpandCards.vue'
 
 const cardList: Array<IExpandCard> = [
   {
@@ -41,9 +41,3 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style>
-#__layout {
-  height: 100vh;
-}
-</style>

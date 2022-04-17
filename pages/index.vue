@@ -1,6 +1,6 @@
 <template lang="html">
-  <nav class="w-full">
-    <ul>
+  <nav class="w-full min-h-screen flex items-center justify-center py-4">
+    <ul class="grid gap-4">
       <li v-for="(link, index) in linksList" :key="index">
         <ProjectLink :project-url="link.url">{{ link.title }}</ProjectLink>
       </li>
