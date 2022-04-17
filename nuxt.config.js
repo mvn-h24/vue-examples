@@ -18,12 +18,7 @@ export default {
   components: {
     dirs: ['~/components/expand-cards', '~/components', '~/components/ui-lib'],
   },
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxt/image',
-    '@nuxt/typescript-build',
-    '@nuxtjs/tailwindcss',
-  ],
+  modules: ['@nuxt/image', '@nuxt/typescript-build', '@nuxtjs/tailwindcss'],
   axios: {
     baseURL: '/',
   },
