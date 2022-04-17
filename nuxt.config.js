@@ -31,4 +31,5 @@ export default {
   server: {
     port: 3000,
   },
+  serverMiddleware: [{ path: '/api', handler: '~/api/index.ts' }],
 }
