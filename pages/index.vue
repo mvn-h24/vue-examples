@@ -20,6 +20,10 @@ const Projects = [
     url: '/calendar',
     title: 'Calendar',
   },
+  {
+    url: '/file-uploader',
+    title: 'File uploader',
+  }
 ]
 export default Vue.extend({
   name: 'IndexPage',

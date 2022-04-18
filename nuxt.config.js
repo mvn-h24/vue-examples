@@ -26,4 +26,7 @@ export default {
   server: {
     port: 3000,
   },
+  tailwindcss: {
+    configPath: 'tailwind.config.js',
+  }
 }
