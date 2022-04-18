@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition name="fade">
-      <uploader-modal v-show="ShowModal" @click-close="toggleModal"/>
+      <uploader-modal v-show="ShowModal" @click-close="toggleModal" @input="(data) => $emit('uploaded', data)"/>
     </transition>
     <uploader-button @click="toggleModal"/>
   </div>
@@ -28,6 +28,7 @@ export default Vue.extend({
 })
 </script>
 
+<!--suppress CssUnusedSymbol -->
 <style>
 .fade-enter-active {
   transition: opacity .2s ease-in-out;
